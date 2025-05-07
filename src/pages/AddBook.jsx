@@ -46,78 +46,86 @@ function AddBook() {
     }
 
     return (
-        <div style={{ padding: '1rem' }}>
-            <h1>Add a New Book</h1>
-            <form onSubmit={handleSubmit} style={{ maxWidth: '500px' }}>
-                <div style={{ marginBottom: '1rem' }}>
-                    <label>Title:</label><br />
-                    <input
-                        type="text"
-                        name="title"
-                        value={form.title}
-                        onChange={handleChange}
-                        style={{ width: '100%', padding: '0.5rem' }}
-                    />
-                    {errors.title && <p style={{ color: 'red' }}>{errors.title}</p>}
-                </div>
+        <div className="h-screen overflow-hidden bg-gradient-to-br from-blue-100 via-violet-200 to-indigo-300 text-gray-800 flex items-center justify-center">
+            <div className="max-w-xl w-full bg-white/90 backdrop-blur-md p-6 rounded-2xl shadow-xl">
+                <h1 className="text-2xl font-bold mb-6 text-center">Add a New Book</h1>
+                <form onSubmit={handleSubmit} className="space-y-4">
+                    <div>
+                        <label className="block mb-1 font-medium">Title:</label>
+                        <input
+                            type="text"
+                            name="title"
+                            value={form.title}
+                            onChange={handleChange}
+                            className="w-full p-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                        />
+                        {errors.title && <p className="text-red-500 text-sm mt-1">{errors.title}</p>}
+                    </div>
 
-                <div style={{ marginBottom: '1rem' }}>
-                    <label>Author:</label><br />
-                    <input
-                        type="text"
-                        name="author"
-                        value={form.author}
-                        onChange={handleChange}
-                        style={{ width: '100%', padding: '0.5rem' }}
-                    />
-                    {errors.author && <p style={{ color: 'red' }}>{errors.author}</p>}
-                </div>
+                    <div>
+                        <label className="block mb-1 font-medium">Author:</label>
+                        <input
+                            type="text"
+                            name="author"
+                            value={form.author}
+                            onChange={handleChange}
+                            className="w-full p-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                        />
+                        {errors.author && <p className="text-red-500 text-sm mt-1">{errors.author}</p>}
+                    </div>
 
-                <div style={{ marginBottom: '1rem' }}>
-                    <label>Category:</label><br />
-                    <input
-                        type="text"
-                        name="category"
-                        value={form.category}
-                        onChange={handleChange}
-                        style={{ width: '100%', padding: '0.5rem' }}
-                    />
-                    {errors.category && <p style={{ color: 'red' }}>{errors.category}</p>}
-                </div>
+                    <div>
+                        <label className="block mb-1 font-medium">Category:</label>
+                        <input
+                            type="text"
+                            name="category"
+                            value={form.category}
+                            onChange={handleChange}
+                            className="w-full p-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                        />
+                        {errors.category && <p className="text-red-500 text-sm mt-1">{errors.category}</p>}
+                    </div>
 
-                <div style={{ marginBottom: '1rem' }}>
-                    <label>Description:</label><br />
-                    <textarea
-                        name="description"
-                        value={form.description}
-                        onChange={handleChange}
-                        rows="4"
-                        style={{ width: '100%', padding: '0.5rem' }}
-                    ></textarea>
-                    {errors.description && <p style={{ color: 'red' }}>{errors.description}</p>}
-                </div>
+                    <div>
+                        <label className="block mb-1 font-medium">Description:</label>
+                        <textarea
+                            name="description"
+                            value={form.description}
+                            onChange={handleChange}
+                            rows="3"
+                            className="w-full p-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                        ></textarea>
+                        {errors.description && <p className="text-red-500 text-sm mt-1">{errors.description}</p>}
+                    </div>
 
-                <div style={{ marginBottom: '1rem' }}>
-                    <label>Rating (0-5):</label><br />
-                    <input
-                        type="number"
-                        name="rating"
-                        value={form.rating}
-                        onChange={handleChange}
-                        min="0"
-                        max="5"
-                        step="0.1"
-                        style={{ width: '100%', padding: '0.5rem' }}
-                    />
-                    {errors.rating && <p style={{ color: 'red' }}>{errors.rating}</p>}
-                </div>
+                    <div>
+                        <label className="block mb-1 font-medium">Rating (0–5):</label>
+                        <input
+                            type="number"
+                            name="rating"
+                            value={form.rating}
+                            onChange={handleChange}
+                            min="0"
+                            max="5"
+                            step="0.1"
+                            className="w-full p-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                        />
+                        {errors.rating && <p className="text-red-500 text-sm mt-1">{errors.rating}</p>}
+                    </div>
 
-                <button type="submit" style={{ padding: '0.5rem 1rem' }}>
-                    Add Book
-                </button>
-            </form>
+                    <div className="text-center">
+                        <button
+                            type="submit"
+                            className="bg-indigo-500 hover:bg-indigo-600 text-white font-medium px-6 py-2 rounded-full transition duration-200"
+                        >
+                            Add Book
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
+
 }
 
 export default AddBook;

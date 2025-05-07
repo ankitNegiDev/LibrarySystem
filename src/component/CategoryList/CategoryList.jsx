@@ -12,7 +12,7 @@ function CategoryList() {
                     // Link to browse books by category
                     <Link
                         key={index}
-                        to={`/books/${category.toLowerCase()}`} 
+                        to={`/books/${category}`} 
                         className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
                     >
                         {category}

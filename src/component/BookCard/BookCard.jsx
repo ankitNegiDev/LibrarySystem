@@ -5,24 +5,35 @@ function BookCard(props) {
     const book = props.book;
 
     return (
-        <div className="bg-white shadow-md rounded-lg p-4">
-            {/* <h2 className="text-xl font-semibold mb-2">{book.title}</h2> */}
-            <p className="text-gray-600">Author: {book.author}</p>
-            <p className="text-gray-600">Category: {book.category}</p>
-            <p className="text-gray-600">Rating: {book.rating}</p>
+        <div className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-5 flex flex-col justify-between h-full border border-gray-100">
+            <div className="space-y-3">
+                {/* <h2 className="text-2xl font-bold text-gray-800">{book.title}</h2> */}
 
-            {/* View Details link */}
+                <p className="text-gray-700">
+                    <span className="font-semibold">Author:</span> {book.author}
+                </p>
+
+                <p className="text-gray-700">
+                    <span className="font-semibold">Category:</span> {book.category}
+                </p>
+
+                <p className="text-gray-700">
+                    <span className="font-semibold">Rating:</span> ⭐ {book.rating}
+                </p>
+            </div>
+
             <Link
                 to={`/book-details/${book.id}`}
-                className="text-blue-500 hover:underline mt-2 inline-block"
+                className="mt-5 inline-block bg-indigo-600 text-white text-center py-2 px-4 rounded-lg font-medium hover:bg-indigo-700 transition-colors duration-300"
             >
-                View Details
+                View Details →
             </Link>
         </div>
     );
 }
 
 export default BookCard;
+
 
 // this component will show the book details not the image because for that we create another compo which is bookcard image.
 // we will use it whenever we need t odisplay book info.

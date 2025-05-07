@@ -4,9 +4,20 @@ import { useState, useEffect } from 'react';
 import BookCard from '../component/BookCard/BookCard';
 import SearchBar from '../component/SearchBar/SearchBar';
 import BookCardImage from '../component/BookCard/BookCardImage';
-
+function capitalizeWords(text) {
+    return text
+        .split(/[-\s]/) // splits by space or dash
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+}
 function BrowseBooks() {
     const { category } = useParams();
+    let originalCategory=category;
+    console.log("original category is : ",originalCategory);
+    if(originalCategory){
+        originalCategory = capitalizeWords(originalCategory)
+
+    }
     const books = useSelector(function (state) { return state.books.items; });
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredBooks, setFilteredBooks] = useState([]);
@@ -33,22 +44,25 @@ function BrowseBooks() {
     }, [category, searchTerm, books]);
 
     return (
-        <div style={{ padding: '1rem' }}>
-            {/* <h1>Browse Books</h1> */}
+        <div className="p-8 bg-gradient-to-br from-blue-50 via-violet-100 to-indigo-100">
             <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+            {category && (
+                <h2 className="text-5xl font-extrabold text-gray-800  mb-20 text-center">
+                    Books in {originalCategory}
+                </h2>
+            )}
+
             {filteredBooks.length > 0 ? (
-                <div style={{ display: 'grid', gap: '1rem' }}>
-                    {filteredBooks.map(function (book) {
-                        return (
-                            <div key={book.id}>
-                                <BookCardImage book={book} />
-                                <BookCard book={book} />
-                            </div>
-                        );
-                    })}
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    {filteredBooks.map((book) => (
+                        <div key={book.id} className="flex flex-col">
+                            <BookCardImage book={book} />
+                            <BookCard book={book} />
+                        </div>
+                    ))}
                 </div>
             ) : (
-                <p>No books found.</p>
+                <p className="text-center text-xl text-gray-700">No books found.</p>
             )}
         </div>
     );

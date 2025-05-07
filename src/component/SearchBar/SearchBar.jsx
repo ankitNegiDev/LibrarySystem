@@ -30,7 +30,7 @@ function SearchBar({ searchTerm, setSearchTerm }) {
             placeholder="Search by title or author"
             value={searchTerm}
             onChange={handleChange}
-            style={{ padding: '0.5rem', width: '100%', marginBottom: '1rem' }}
+            className="w-full p-3 mb-6 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm text-gray-800 placeholder-gray-400"
         />
     );
 }
