@@ -1,55 +1,50 @@
-import BookCard from "../component/BookCard/BookCard";
-import CategoryList from "../component/CategoryList/CategoryList";
-import Navbar from "../component/Navbar/Navbar";
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import BookCard from '../component/BookCard/BookCard';
+import BookCardImage from '../component/BookCard/BookCardImage';
 
 function Home() {
-    let books = [
-        {
-            id: 1,
-            title: "The Time Machine",
-            author: "H.G. Wells",
-            description: "A science fiction classic.",
-            rating: 4.2,
-            category: "Sci-Fi",
-        },
-        {
-            id: 2,
-            title: "Sapiens",
-            author: "Yuval Noah Harari",
-            description: "A brief history of humankind.",
-            rating: 4.5,
-            category: "Non-Fiction",
-        },
-        {
-            id: 2,
-            title: "Sapiens",
-            author: "Yuval Noah Harari",
-            description: "A brief history of humankind.",
-            rating: 4.8,
-            category: "Non-Fiction",
-        },
-    ];
-    let popularBooks = books.filter(function callback(book) {
-        if (book.rating > 4) {
-            return true;
-        } else {
-            return false;
-        }
+    const books = useSelector(function (state) {
+        return state.books.items;
     });
 
+    const categories = [...new Set(books.map(function (book) {
+        return book.category;
+    }))];
+
+    const popularBooks = books.slice(0, 30); // Assuming first 3 are popular
+
     return (
-        <>
-            <h1>Welcome to Bingolive online library system</h1>
-            <Navbar books={books}/>
-            <div>
-                <h2>Books Category</h2>
-                <CategoryList books={books} />
-                {popularBooks.map(function callback(book) {
-                    return <BookCard book={book} />;
+        <div style={{ padding: '1rem' }}>
+            <h1>Welcome to the Book Library</h1>
+            <h2>Categories</h2>
+            <ul>
+                {categories.map(function (category) {
+                    return (
+                        <li key={category}>
+                            <Link to={`/books/${category.toLowerCase()}`}>{category}</Link>
+                        </li>
+                    );
                 })}
-                {/* <BookCard book={books[0]}/> */}
-            </div>
-        </>
+            </ul>
+            <h2>Popular Books</h2>
+            <ul>
+                {popularBooks.map(function (book) {
+                    return (
+                        <li key={book.id}>
+                            {/* <BookCard book={book} /> */}
+                            <Link to={`/book-details/${book.id}`}>
+                                {/* {book.title} */}
+                                <BookCardImage book={book} />
+                            </Link>
+                        </li>
+                    );
+                })}
+            </ul>
+        </div>
     );
 }
+
 export default Home;
+
+// at home we ahve to show navbar , category and popular books ... for popular books we selected  books from 0 to 20 or we can create a random function of a random range .... (check later)
