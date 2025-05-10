@@ -6,32 +6,3 @@
 
 
 
-/* 
-.nav-link {
-  position: relative;
-  transition: color 0.3s ease;
-}
-.nav-link::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -2px;
-  height: 2px;
-  width: 100%;
-  background-color: #38bdf8;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.3s ease;
-}
-.nav-link:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
-.active-link {
-  color: #38bdf8;
-  font-weight: 600;
-}
-.nav-link-mobile {
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #444;
-} */
